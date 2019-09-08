@@ -8,19 +8,38 @@
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        var logo = $('<img src="https://logos-download.com/wp-content/uploads/2016/02/Twitter_Logo_new.png"  width="50px">')
+        $("body").append(logo);
+        let imageUrl = 'https://logos-download.com/wp-content/uploads/2016/02/Twitter_Logo_new.png';
+ 
+        $("body").css({'background-image': `url(${imageUrl})` , "background-size" : "1500px" , "background-repeat": "no-repeat"  , "align" : "center" });
+
+            var mine =  $('<button>Click me</button>');
+            $("body").append(mine); 
+            $(mine).attr("id", "buttonH") ; 
+            $(mine).click(function(){
+              
+                location.reload(true); 
+            })
+            var $body = $('body');
+            //$body.html(mine);
+
+           // moment(tweetDate, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+
+          $tweet.text("@" + tweet.user+ ': ' + tweet.message + "  "+tweet.created_at );
+          $( $tweet ).css( {"background-color" : "#33DAFF","padding": "10px", "margin" :"10px", "border" : "2px solid blue"} );
+
           $tweet.appendTo($body);
           index -= 1;
         }
+            
 
-      });
+         }); 
 
     </script>
   </body>
